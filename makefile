@@ -51,11 +51,6 @@ clean:
 run-hashverif: build-hashverif
 	export LD_LIBRARY_PATH=$$(pwd):$$LD_LIBRARY_PATH; ./$(EXENAME)
 
-valgrind: build-hashverif
-	export LD_LIBRARY_PATH=$$(pwd):$$LD_LIBRARY_PATH; valgrind --leak-check=full ./$(EXENAME)
-
-build-hashverif: $(EXENAME)
-
 $(EXENAME): $(LIBNAME) hashverif.o
 	$(COMPILER) $(ARGS) -o $(EXENAME) -L$(PWD) hashverif.o -l$(NAME)
 
